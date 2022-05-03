@@ -1,33 +1,22 @@
-resource "docker_image" "icecream" {
-  name = "icecream"
-  build {
-    path = "../icecream"
-  }
-  keep_locally = true
-}
-
-resource "docker_image" "order" {
-  name = "order"
-  build {
-    path = "../order"
-  }
-  keep_locally = true
-}
-
-resource "docker_container" "icecream" {
-  name  = "icecream_endpoint"
-  image = docker_image.icecream.name
-  ports {
-    internal = 80
-    external = 8080
+terraform {
+  required_providers {
+    docker = {
+      source  = "kreuzwerker/docker"
+      version = "~> 2.13.0"
+    }
   }
 }
 
-resource "docker_container" "order" {
-  name  = "order_endpoint"
-  image = docker_image.order.name
-  ports {
-    internal = 80
-    external = 8081
-  }
+provider "docker" {
+  host = "npipe:////.//pipe//docker_engine"
+}
+
+module "icecream" {
+  source   = "../icecream"
+  ext_port = 8080
+}
+
+module "order" {
+  source   = "../order"
+  ext_port = 8081
 }
