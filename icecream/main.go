@@ -25,7 +25,7 @@ func main() {
 func Flavours(w http.ResponseWriter, r *http.Request) {
 	switch r.Method {
 	case "GET":
-		buf, _ := json.Marshal(NewFlavoursResponse())
+		buf, _ := json.Marshal(NewListFlavoursResponse())
 		w.Header().Set("Content-Type", "application/json")
 		w.Write(buf)
 	case "POST":
@@ -33,7 +33,7 @@ func Flavours(w http.ResponseWriter, r *http.Request) {
 		r.Body.Read(buf) // expect good client
 		defer r.Body.Close()
 
-		req := new(FlavourPostRequest)
+		req := new(CreateFlavourRequest)
 		json.Unmarshal(buf, req)
 
 		flavours = append(flavours, req.Flavour)

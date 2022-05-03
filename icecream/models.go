@@ -2,16 +2,16 @@ package main
 
 type Flavour string
 
-type FlavoursResponse struct {
+type ListFlavoursResponse struct {
 	Flavours []Flavour `json:"flavours"`
 }
 
-type FlavourPostRequest struct {
+type CreateFlavourRequest struct {
 	Flavour Flavour `json:"flavour"`
 }
 
-func NewFlavoursResponse() *FlavoursResponse {
-	return &FlavoursResponse{
+func NewListFlavoursResponse() *ListFlavoursResponse {
+	return &ListFlavoursResponse{
 		Flavours: flavours,
 	}
 }
