@@ -28,6 +28,15 @@ func Flavours(w http.ResponseWriter, r *http.Request) {
 		buf, _ := json.Marshal(NewFlavoursResponse())
 		w.Header().Set("Content-Type", "application/json")
 		w.Write(buf)
+	case "POST":
+		buf := make([]byte, r.ContentLength)
+		r.Body.Read(buf) // expect good client
+		defer r.Body.Close()
+
+		req := new(FlavourPostRequest)
+		json.Unmarshal(buf, req)
+
+		flavours = append(flavours, req.Flavour)
 	default:
 		w.WriteHeader(http.StatusMethodNotAllowed)
 	}
