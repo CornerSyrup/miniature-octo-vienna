@@ -2,6 +2,9 @@
     "folders": [
         {
             "path": "icecream"
+        },
+        {
+            "path": "order"
         }
     ],
     "settings": {}
