@@ -1,0 +1,13 @@
+openapi: 3.0.0
+info:
+    version: "0.1.0"
+    title: "Ice cream Shop"
+    license:
+        name: MIT
+servers:
+    - url: "localhost:3000"
+paths:
+    /flavours:
+        $ref: "../icecream/openapi.path.yml"
+    /orders:
+        $ref: "../order/openapi.path.yml"

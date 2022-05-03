@@ -1,0 +1,21 @@
+get:
+    summary: "Get list of ice cream flavours"
+    operationId: listFlavours
+    responses:
+        "200":
+            description: "List of ice cream flavours"
+            content:
+                application/json:
+                    schema:
+                        type: object
+                        properties:
+                            flavours:
+                                type: array
+                                items:
+                                    type: string
+post:
+    summary: "Register a new ice cream flavour"
+    operationId: registerFlavour
+    responses:
+        "200":
+            description: "Created"

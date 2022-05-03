@@ -1,0 +1,10 @@
+Scoop:
+    type: object
+    properties:
+        flavour:
+            type: string
+        quantity:
+            type: integer
+    required:
+        - flavour
+        - quantity

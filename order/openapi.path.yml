@@ -1,0 +1,31 @@
+get:
+    summary: "Get list of uncompleted orders"
+    operationId: listOrders
+    responses:
+        "200":
+            description: "List of uncompleted orders"
+            content:
+                application/json:
+                    schema:
+                        type: object
+                        properties:
+                            orders:
+                                type: array
+                                items:
+                                    $ref: "./openapi.schema.yml#/Scoop"
+post:
+    summary: "Place a new order"
+    operationId: placeOrder
+    responses:
+        "200":
+            description: "Created"
+    requestBody:
+        content:
+            application/json:
+                schema:
+                    type: object
+                    properties:
+                        scoop:
+                            type: array
+                            items:
+                                $ref: "./openapi.schema.yml#/Scoop"
