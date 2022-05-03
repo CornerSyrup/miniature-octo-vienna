@@ -10,5 +10,15 @@
             "path": "infrastructure"
         }
     ],
-    "settings": {}
+    "settings": {},
+    "extensions": {
+        "recommendations": [
+            "ms-azuretools.vscode-docker",
+            "golang.go",
+            "hashicorp.terraform",
+            "42crunch.vscode-openapi",
+            "rangav.vscode-thunder-client",
+            "redhat.vscode-yaml"
+        ]
+    }
 }
