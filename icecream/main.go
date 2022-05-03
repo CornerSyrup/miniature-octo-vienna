@@ -11,6 +11,10 @@ const (
 	PORT = 80
 )
 
+var (
+	flavours = []Flavour{"chocolate", "mint", "vanilla"}
+)
+
 func main() {
 	http.HandleFunc("/flavours", Flavours)
 
@@ -19,7 +23,12 @@ func main() {
 }
 
 func Flavours(w http.ResponseWriter, r *http.Request) {
-	buf, _ := json.Marshal(NewFlavoursResponse())
-	w.Header().Set("Content-Type", "application/json")
-	w.Write(buf)
+	switch r.Method {
+	case "GET":
+		buf, _ := json.Marshal(NewFlavoursResponse())
+		w.Header().Set("Content-Type", "application/json")
+		w.Write(buf)
+	default:
+		w.WriteHeader(http.StatusMethodNotAllowed)
+	}
 }

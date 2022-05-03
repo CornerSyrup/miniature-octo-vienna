@@ -8,6 +8,6 @@ type FlavoursResponse struct {
 
 func NewFlavoursResponse() *FlavoursResponse {
 	return &FlavoursResponse{
-		Flavours: []Flavour{"chocolate", "mint", "vanilla"},
+		Flavours: flavours,
 	}
 }
