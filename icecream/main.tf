@@ -17,6 +17,17 @@ variable "ext_port" {
   type        = number
 }
 
+variable "net_name" {
+  default     = ""
+  description = "Docker virtual network name"
+  type        = string
+}
+
+variable "ip_addr" {
+  description = "IPv4 address for the container"
+  type        = string
+}
+
 resource "docker_image" "icecream" {
   name = "icecream"
   build {
@@ -30,6 +41,15 @@ resource "docker_container" "icecream" {
   image = docker_image.icecream.name
   ports {
     internal = 80
-    external = 8080
+    external = var.ext_port
   }
+  networks_advanced {
+    name         = var.net_name
+    ipv4_address = var.ip_addr
+  }
+}
+
+output "host_ip" {
+  description = "IP address of the container"
+  value       = docker_container.icecream.ip_address
 }

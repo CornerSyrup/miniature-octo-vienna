@@ -12,9 +12,20 @@ provider "docker" {
 }
 
 variable "ext_port" {
-  default     = 8080
+  default     = 8081
   description = "External port for the contianer"
   type        = number
+}
+
+variable "net_name" {
+  default     = ""
+  description = "Docker virtual network name"
+  type        = string
+}
+
+variable "ip_addr" {
+  description = "IPv4 address for the container"
+  type        = string
 }
 
 resource "docker_image" "order" {
@@ -30,6 +41,15 @@ resource "docker_container" "order" {
   image = docker_image.order.name
   ports {
     internal = 80
-    external = 8081
+    external = var.ext_port
   }
+  networks_advanced {
+    name         = var.net_name
+    ipv4_address = var.ip_addr
+  }
+}
+
+output "host_ip" {
+  description = "IP address of the container"
+  value       = docker_container.order.ip_address
 }
