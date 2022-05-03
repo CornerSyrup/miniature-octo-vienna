@@ -22,7 +22,7 @@ resource "docker_image" "order" {
   build {
     path = "../order"
   }
-  keep_locally = true
+  keep_locally = false
 }
 
 resource "docker_container" "order" {

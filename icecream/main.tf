@@ -22,7 +22,7 @@ resource "docker_image" "icecream" {
   build {
     path = "../icecream"
   }
-  keep_locally = true
+  keep_locally = false
 }
 
 resource "docker_container" "icecream" {
