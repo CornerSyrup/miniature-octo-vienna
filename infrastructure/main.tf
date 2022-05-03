@@ -32,10 +32,21 @@ module "order" {
   ip_addr  = "172.20.0.3"
 }
 
+module "nginx" {
+  source   = "./nginx"
+  ext_port = 80
+  net_name = docker_network.vlan.name
+  ip_addr  = "172.20.0.4"
+}
+
 output "ip_icecream" {
   value = module.icecream.host_ip
 }
 
 output "ip_order" {
   value = module.order.host_ip
+}
+
+output "ip_gateway" {
+  value = docker_container.gateway.ip_address
 }
