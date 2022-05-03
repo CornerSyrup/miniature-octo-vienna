@@ -16,7 +16,7 @@ var (
 )
 
 func main() {
-	http.HandleFunc("/order", Orders)
+	http.HandleFunc("/orders", Orders)
 
 	log.Printf("Listening on port %d", PORT)
 	log.Fatal(http.ListenAndServe(fmt.Sprintf(":%d", PORT), nil))
