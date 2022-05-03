@@ -1,0 +1,13 @@
+{
+    "scripts": {
+        "openapi": "swagger-cli bundle openapi.yml --outfile dist/openapi.yml --type yaml",
+        "terraform": "npm run apply",
+        "init": "terraform init",
+        "plan": "terraform plan",
+        "apply": "terraform apply"
+    },
+    "dependencies": {
+        "swagger-cli": "^4.0.4",
+        "terraform": "^1.20.2"
+    }
+}
