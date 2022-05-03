@@ -5,6 +5,9 @@
         },
         {
             "path": "order"
+        },
+        {
+            "path": "infrastructure"
         }
     ],
     "settings": {}
