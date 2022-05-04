@@ -12,7 +12,7 @@ provider "docker" {
 }
 
 variable "ext_port" {
-  default     = 8081
+  default     = 80
   description = "External port for the contianer"
   type        = number
 }
@@ -28,17 +28,17 @@ variable "ip_addr" {
   type        = string
 }
 
-resource "docker_image" "order" {
-  name = "order"
+resource "docker_image" "api_gateway" {
+  name = "api_gateway"
   build {
-    path = "../order"
+    path = "./nginx"
   }
-  keep_locally = false
+  keep_locally = true
 }
 
-resource "docker_container" "order" {
-  name  = "order_endpoint"
-  image = docker_image.order.name
+resource "docker_container" "api_gateway" {
+  image = docker_image.api_gateway.name
+  name  = "api_gateway"
   ports {
     internal = 80
     external = var.ext_port
@@ -51,5 +51,5 @@ resource "docker_container" "order" {
 
 output "host_ip" {
   description = "IP address of the container"
-  value       = docker_container.order.ip_address
+  value       = docker_container.api_gateway.ip_address
 }
