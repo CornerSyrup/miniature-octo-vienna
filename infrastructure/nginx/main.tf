@@ -47,4 +47,8 @@ resource "docker_container" "gateway" {
     container_path = "/etc/nginx/conf.d/default.conf"
     host_path      = "C:\\Users\\klein_private\\Documents\\GitHub\\miniature-octo-vienna\\infrastructure\\nginx\\default.conf"
   }
+
+output "host_ip" {
+  description = "IP address of the container"
+  value       = docker_container.api_gateway.ip_address
 }
