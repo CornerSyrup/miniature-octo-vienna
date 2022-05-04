@@ -28,12 +28,16 @@ variable "ip_addr" {
   type        = string
 }
 
-resource "docker_image" "nginx" {
-  name = "nginx:1.21.6-alpine"
+resource "docker_image" "api_gateway" {
+  name = "api_gateway"
+  build {
+    path = "./nginx"
+  }
+  keep_locally = true
 }
 
-resource "docker_container" "gateway" {
-  image = docker_image.nginx.name
+resource "docker_container" "api_gateway" {
+  image = docker_image.api_gateway.name
   name  = "api_gateway"
   ports {
     internal = 80
@@ -43,10 +47,7 @@ resource "docker_container" "gateway" {
     name         = var.net_name
     ipv4_address = var.ip_addr
   }
-  volumes {
-    container_path = "/etc/nginx/conf.d/default.conf"
-    host_path      = "C:\\Users\\klein_private\\Documents\\GitHub\\miniature-octo-vienna\\infrastructure\\nginx\\default.conf"
-  }
+}
 
 output "host_ip" {
   description = "IP address of the container"
