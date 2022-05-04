@@ -48,5 +48,5 @@ output "ip_order" {
 }
 
 output "ip_gateway" {
-  value = docker_container.gateway.ip_address
+  value = module.nginx.host_ip
 }
