@@ -8,6 +8,6 @@
     },
     "dependencies": {
         "swagger-cli": "^4.0.4",
-        "terraform": "^1.21.2"
+        "terraform": "^1.22.1"
     }
 }
