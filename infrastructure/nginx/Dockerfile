@@ -1,4 +1,4 @@
-FROM nginx:1.22.1-alpine
+FROM nginx:1.29.5-alpine
 
 COPY . /etc/nginx/conf.d
 
